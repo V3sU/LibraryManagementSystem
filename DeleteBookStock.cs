@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -17,106 +17,100 @@ namespace LibraryManagementSystem.forms
         public DeleteBookStock()
         {
             InitializeComponent();
-            datashow();
+            DisplayData();
         }
-        private void datashow(string dest)
+        // Display data based on the specified category
+        private void DisplayData(string category)
         {
             try
             {
-                string querry;
-                querry = "SELECT * FROM bookTable where category='" + dest + "'";
+                string query = $"SELECT * FROM bookTable WHERE category='{category}'";
 
-                Connection CN = new Connection();
+                Connection connection = new Connection();
 
-                MySqlDataAdapter sda = new MySqlDataAdapter(querry, CN.thisConnection);
+                MySqlDataAdapter dataAdapter = new MySqlDataAdapter(query, connection.thisConnection);
 
-                DataTable fatable = new DataTable();
-                sda.Fill(fatable);
-                dataGridView1.DataSource = fatable;
-                CN.thisConnection.Close();
+                DataTable dataTable = new DataTable();
+                dataAdapter.Fill(dataTable);
+                bookStockGridView.DataSource = dataTable;
+                connection.thisConnection.Close();
             }
             catch (Exception ex)
             {
-                errorDeleteBook.Text = ex.Message;
+                errorDeleteBookLabel.Text = ex.Message;
             }
-
         }
-        private void datashow()
+
+        // Display all the data from the bookTable
+        private void DisplayData()
         {
             try
             {
-                string querry;
-                querry = "SELECT * FROM bookTable";
+                string query = "SELECT * FROM bookTable";
 
-                Connection CN = new Connection();
+                Connection connection = new Connection();
 
-                MySqlDataAdapter sda = new MySqlDataAdapter(querry, CN.thisConnection);
+                MySqlDataAdapter dataAdapter = new MySqlDataAdapter(query, connection.thisConnection);
 
-                DataTable fatable = new DataTable();
-                sda.Fill(fatable);
-                dataGridView1.DataSource = fatable;
-                CN.thisConnection.Close();
-
+                DataTable dataTable = new DataTable();
+                dataAdapter.Fill(dataTable);
+                bookStockGridView.DataSource = dataTable;
+                connection.thisConnection.Close();
             }
             catch (Exception ex)
             {
-                errorDeleteBook.Text = ex.Message;
+                errorDeleteBookLabel.Text = ex.Message;
             }
-
         }
 
-        private void button5_Click(object sender, EventArgs e)
+        // Handle the delete book button click event
+        private void deleteBookButton_Click(object sender, EventArgs e)
         {
             try
             {
-                Connection CN = new Connection();
-                string sp_delete = "Delete from bookTable where bookName= '" + this.theValuetextBox.Text + "'";
-                CN.thisConnection.Open();
-                MySqlCommand cmd = new MySqlCommand(sp_delete, CN.thisConnection);
+                Connection connection = new Connection();
+                string deleteQuery = $"DELETE FROM bookTable WHERE bookName= '{bookNameTextBox.Text}'";
+                connection.thisConnection.Open();
+                MySqlCommand cmd = new MySqlCommand(deleteQuery, connection.thisConnection);
 
-                int i = cmd.ExecuteNonQuery();
+                int rowsAffected = cmd.ExecuteNonQuery();
 
-                CN.thisConnection.Close();
-                if (i >0)
+                connection.thisConnection.Close();
+                if (rowsAffected > 0)
                 {
-                    errorDeleteBook.Text = theValuetextBox.Text + " is deleted successfully";
+                    errorDeleteBookLabel.Text = $"{bookNameTextBox.Text} is deleted successfully";
                 }
                 else
                 {
-                    errorDeleteBook.Text = theValuetextBox.Text + " is not found in database.";
+                    errorDeleteBookLabel.Text = $"{bookNameTextBox.Text} is not found in the database.";
                 }
-                
 
             }
             catch (Exception ex)
             {
-                errorDeleteBook.Text= ex.Message;
+                errorDeleteBookLabel.Text = ex.Message;
             }
-            //errorDeleteBook
         }
 
-        private void button1_Click(object sender, EventArgs e)
+        // Handle the search button click event
+        private void searchButton_Click(object sender, EventArgs e)
         {
-            datashow(categoryComboBox.Text);
-            //categoryComboBox
+            DisplayData(categoryComboBox.Text);
         }
 
-        private void refresh_Click(object sender, EventArgs e)
+        // Handle the refresh button click event
+        private void refreshButton_Click(object sender, EventArgs e)
         {
-            datashow();
+            DisplayData();
         }
 
-        private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        // Other event handlers
+        private void bookStockGridView_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
 
         }
 
         private void categoryComboBox_SelectedIndexChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label12_Click(object sender, EventArgs e)
         {
 
         }
