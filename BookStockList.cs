@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -10,32 +10,34 @@ using System.Windows.Forms;
 using System.Data.SqlClient;
 using MySql.Data.MySqlClient;
 
-namespace LibraryManagementSystem.forms
+namespace LibraryManagementSystem.Forms
 {
-    public partial class BookStockList : Form
+    public partial class BookStockListForm : Form
     {
-        public BookStockList()
+        public BookStockListForm()
         {
             InitializeComponent();
-            datashow();
-        }
-        private void datashow()
-        {
-            Connection CN = new Connection();
-            string querry = "SELECT * FROM bookTable";
-
-            MySqlDataAdapter sda = new MySqlDataAdapter(querry, CN.thisConnection);
-
-            DataTable fatable = new DataTable();
-            sda.Fill(fatable);
-            dataGridView1.DataSource = fatable;
-            CN.thisConnection.Close();
-
+            DisplayData();
         }
 
-        private void refresh_Click(object sender, EventArgs e)
+        // Method to display the data from the database
+        private void DisplayData()
         {
-            datashow();
+            Connection connection = new Connection();
+            string query = "SELECT * FROM bookTable";
+
+            MySqlDataAdapter dataAdapter = new MySqlDataAdapter(query, connection.ThisConnection);
+
+            DataTable dataTable = new DataTable();
+            dataAdapter.Fill(dataTable);
+            bookStockGridView.DataSource = dataTable;
+            connection.ThisConnection.Close();
+        }
+
+        // Event handler for the Refresh button
+        private void RefreshButton_Click(object sender, EventArgs e)
+        {
+            DisplayData();
         }
     }
 }
