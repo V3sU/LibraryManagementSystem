@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+using System;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
@@ -7,55 +6,55 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using System.Data.SqlClient;
 using MySql.Data.MySqlClient;
 
 namespace LibraryManagementSystem.forms
 {
-    public partial class ManagerDelete : Form
+    public partial class ManagerDeletionForm : Form
     {
-        public ManagerDelete()
+        public ManagerDeletionForm()
         {
-            InitializeComponent();
+        InitializeComponent();
         }
+            private void ManagerDeletionForm_Load(object sender, EventArgs e)
+    {
+        // This method is called when the form is loaded
+    }
 
-        private void ManagerDelete_Load(object sender, EventArgs e)
+    private void titleLabel_Click(object sender, EventArgs e)
+    {
+        // This method handles titleLabel click event
+    }
+
+    private void DeleteManagerButton_Click(object sender, EventArgs e)
+    {
+        try
         {
+            // Create a connection to the database
+            Connection connection = new Connection();
 
+            // Define the SQL query for deleting the manager by ID
+            string deleteQuery = "DELETE FROM MANAGERLOGININFO WHERE ID= '" + managerIdTextBox.Text + "'";
+            connection.thisConnection.Open();
+
+            // Execute the query
+            MySqlCommand command = new MySqlCommand(deleteQuery, connection.thisConnection);
+            command.ExecuteNonQuery();
+
+            // Close the connection
+            connection.thisConnection.Close();
+
+            // Update the status label with the result
+            errorLabel.Text = managerIdTextBox.Text + " deleted successfully";
         }
-
-        private void label1_Click(object sender, EventArgs e)
+        catch (Exception ex)
         {
-
+            MessageBox.Show(ex.Message);
         }
+    }
 
-        private void DeleteManagerButton_Click(object sender, EventArgs e)
-        {
-            try
-            {
-                Connection CN = new Connection();
-                string sp_delete = "Delete from MANAGERLOGININFO where ID= '" + this.DeleteIdBoxManager.Text + "'";
-                CN.thisConnection.Open();
-                MySqlCommand cmd = new MySqlCommand(sp_delete, CN.thisConnection);
-
-                cmd.ExecuteNonQuery();
-
-                CN.thisConnection.Close();
-
-                ERRORLABEL.Text = DeleteIdBoxManager.Text + " deleted successfully";
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message);
-            }
-
-
-            //DeleteIdBoxManager
-        }
-
-        private void label2_Click(object sender, EventArgs e)
-        {
-
-        }
+    private void managerIdLabel_Click(object sender, EventArgs e)
+    {
+        // This method handles managerIdLabel click event
     }
 }
