@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -7,40 +7,48 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using System.Data.SqlClient;
 using MySql.Data.MySqlClient;
 
 namespace LibraryManagementSystem.forms
 {
-    public partial class NewManagerEntr : Form
+    public partial class NewManagerEntryForm : Form
     {
-        public NewManagerEntr()
+        public NewManagerEntryForm()
         {
             InitializeComponent();
         }
 
-        private void NewManagerEntr_Load(object sender, EventArgs e)
+        private void OnNewManagerEntryFormLoad(object sender, EventArgs e)
         {
-
+            // This method is called when the form is loaded. You can add any initialization code here.
         }
 
-        private void createButton_Click(object sender, EventArgs e)
+        // This method is triggered when the "Create" button is clicked.
+        private void OnCreateButtonClick(object sender, EventArgs e)
         {
-            Connection CN = new Connection();
-            string sp_insert = "INSERT INTO MANAGERLOGININFO (ID, PASSWORD) VALUES('" + EntryIdManager.Text + "', '" + EntryPassBoxManager.Text + "'); ";
-            CN.thisConnection.Open();
-            MySqlCommand cmd = new MySqlCommand(sp_insert, CN.thisConnection);
+            // Create a new Connection object.
+            Connection connection = new Connection();
 
-            int i = cmd.ExecuteNonQuery();
+            // Define the SQL query for inserting a new manager login entry.
+            string insertQuery = "INSERT INTO MANAGERLOGININFO (ID, PASSWORD) VALUES('" + managerIdTextBox.Text + "', '" + passwordTextBox.Text + "'); ";
 
-            CN.thisConnection.Close();
-            if (i > 0)
+            // Open the connection to the database.
+            connection.thisConnection.Open();
+
+            // Create a new MySqlCommand object for executing the SQL query.
+            MySqlCommand cmd = new MySqlCommand(insertQuery, connection.thisConnection);
+
+            // Execute the SQL query and get the number of affected rows.
+            int affectedRows = cmd.ExecuteNonQuery();
+
+            // Close the connection to the database.
+            connection.thisConnection.Close();
+
+            // Display a success message if any rows were affected.
+            if (affectedRows > 0)
             {
-                ERRORLABEL.Text = i+" Data Saved";
+                errorLabel.Text = affectedRows + " Data Saved";
             }
-
         }
     }
 }
-
-
