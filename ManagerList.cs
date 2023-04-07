@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -7,31 +7,31 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using System.Data.SqlClient;
 using MySql.Data.MySqlClient;
 
 namespace LibraryManagementSystem.forms
 {
     public partial class ManagerList : Form
     {
-        string querry;
+        string query;
+
         public ManagerList()
         {
             InitializeComponent();
-            datashow();
+            LoadManagerData();
         }
-        private void datashow()
+
+        // Method to fetch manager data and display it in a DataGridView
+        private void LoadManagerData()
         {
-            Connection CN = new Connection();
-            querry = "SELECT * FROM MANAGERLOGININFO ";
+            Connection connection = new Connection();
+            query = "SELECT * FROM MANAGERLOGININFO";
 
-            MySqlDataAdapter sda = new MySqlDataAdapter(querry, CN.thisConnection);
-
-            DataTable ftable = new DataTable();
-            sda.Fill(ftable);
-            dataGridView1.DataSource = ftable;
-            CN.thisConnection.Close();
-
+            MySqlDataAdapter dataAdapter = new MySqlDataAdapter(query, connection.thisConnection);
+            DataTable managerTable = new DataTable();
+            dataAdapter.Fill(managerTable);
+            dataGridView1.DataSource = managerTable;
+            connection.thisConnection.Close();
         }
 
         private void label1_Click(object sender, EventArgs e)
@@ -44,9 +44,10 @@ namespace LibraryManagementSystem.forms
 
         }
 
+        // Refreshes the manager list data when the refresh button is clicked
         private void refresh_Click(object sender, EventArgs e)
         {
-            datashow();
+            LoadManagerData();
         }
     }
 }
