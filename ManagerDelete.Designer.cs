@@ -102,12 +102,13 @@ namespace LibraryManagementSystem.forms
             
             }
 
-    #endregion
+        #endregion
 
-    private System.Windows.Forms.Button deleteManagerButton;
-    private System.Windows.Forms.Label managerIdLabel;
-    private System.Windows.Forms.TextBox managerIdTextBox;
-    private System.Windows.Forms.Label titleLabel;
-    private System.Windows.Forms.Label errorLabel;
+        private System.Windows.Forms.Button deleteManagerButton;
+        private System.Windows.Forms.Label managerIdLabel;
+        private System.Windows.Forms.TextBox managerIdTextBox;
+        private System.Windows.Forms.Label titleLabel;
+        private System.Windows.Forms.Label errorLabel;
+        
     }
 }
