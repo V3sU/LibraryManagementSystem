@@ -1,6 +1,6 @@
-﻿namespace LibraryManagementSystem.forms
+namespace LibraryManagementSystem.forms
 {
-    partial class ManagerLogin
+    partial class ManagerLoginForm
     {
         /// <summary>
         /// Required designer variable.
@@ -28,113 +28,104 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ManagerLogin));
-            this.button3 = new System.Windows.Forms.Button();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
-            this.label3 = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
-            this.managerLoginInfo = new System.Windows.Forms.Label();
-            this.idBoxManager = new System.Windows.Forms.TextBox();
-            this.passBoxManager = new System.Windows.Forms.TextBox();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ManagerLoginForm));
+            this.loginButton = new System.Windows.Forms.Button();
+            this.logoPictureBox = new System.Windows.Forms.PictureBox();
+            this.passwordLabel = new System.Windows.Forms.Label();
+            this.userIdLabel = new System.Windows.Forms.Label();
+            this.loginInfoLabel = new System.Windows.Forms.Label();
+            this.userIdTextBox = new System.Windows.Forms.TextBox();
+            this.passwordTextBox = new System.Windows.Forms.TextBox();
+            ((System.ComponentModel.ISupportInitialize)(this.logoPictureBox)).BeginInit();
             this.SuspendLayout();
-            // 
-            // button3
-            // 
-            this.button3.Font = new System.Drawing.Font("Franklin Gothic Medium", 8.25F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))));
-            this.button3.Location = new System.Drawing.Point(197, 315);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(143, 28);
-            this.button3.TabIndex = 14;
-            this.button3.Text = "Login";
-            this.button3.UseVisualStyleBackColor = true;
-            this.button3.Click += new System.EventHandler(this.button3_Click);
-            // 
-            // pictureBox1
-            // 
-            this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
-            this.pictureBox1.Location = new System.Drawing.Point(197, 65);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(230, 121);
-            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pictureBox1.TabIndex = 13;
-            this.pictureBox1.TabStop = false;
-            // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.Font = new System.Drawing.Font("Segoe Script", 8.25F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(194, 275);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(64, 17);
-            this.label3.TabIndex = 12;
-            this.label3.Text = "Password";
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Font = new System.Drawing.Font("Segoe Script", 8.25F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(194, 246);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(50, 17);
-            this.label2.TabIndex = 11;
-            this.label2.Text = "User id";
-            // 
-            // managerLoginInfo
-            // 
-            this.managerLoginInfo.AutoSize = true;
-            this.managerLoginInfo.Font = new System.Drawing.Font("Franklin Gothic Medium", 8.25F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))));
-            this.managerLoginInfo.Location = new System.Drawing.Point(194, 211);
-            this.managerLoginInfo.Name = "managerLoginInfo";
-            this.managerLoginInfo.Size = new System.Drawing.Size(196, 15);
-            this.managerLoginInfo.TabIndex = 10;
-            this.managerLoginInfo.Text = "please login if you are MANAGER";
-            // 
-            // idBoxManager
-            // 
-            this.idBoxManager.Location = new System.Drawing.Point(263, 246);
-            this.idBoxManager.Name = "idBoxManager";
-            this.idBoxManager.Size = new System.Drawing.Size(164, 20);
-            this.idBoxManager.TabIndex = 9;
-            // 
-            // passBoxManager
-            // 
-            this.passBoxManager.Location = new System.Drawing.Point(263, 272);
-            this.passBoxManager.Name = "passBoxManager";
-            this.passBoxManager.PasswordChar = 'x';
-            this.passBoxManager.Size = new System.Drawing.Size(164, 20);
-            this.passBoxManager.TabIndex = 8;
-            // 
-            // ManagerLogin
-            // 
+
+            // loginButton
+            this.loginButton.Font = new System.Drawing.Font("Franklin Gothic Medium", 8.25F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))));
+            this.loginButton.Location = new System.Drawing.Point(197, 315);
+            this.loginButton.Name = "loginButton";
+            this.loginButton.Size = new System.Drawing.Size(143, 28);
+            this.loginButton.TabIndex = 14;
+            this.loginButton.Text = "Login";
+            this.loginButton.UseVisualStyleBackColor = true;
+            this.loginButton.Click += new System.EventHandler(this.loginButton_Click);
+
+            // logoPictureBox
+            this.logoPictureBox.Image = ((System.Drawing.Image)(resources.GetObject("logoPictureBox.Image")));
+            this.logoPictureBox.Location = new System.Drawing.Point(197, 65);
+            this.logoPictureBox.Name = "logoPictureBox";
+            this.logoPictureBox.Size = new System.Drawing.Size(230, 121);
+            this.logoPictureBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.logoPictureBox.TabIndex = 13;
+            this.logoPictureBox.TabStop = false;
+
+            // passwordLabel
+            this.passwordLabel.AutoSize = true;
+            this.passwordLabel.Font = new System.Drawing.Font("Segoe Script", 8.25F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.passwordLabel.Location = new System.Drawing.Point(194, 275);
+            this.passwordLabel.Name = "passwordLabel";
+            this.passwordLabel.Size = new System.Drawing.Size(64, 17);
+            this.passwordLabel.TabIndex = 12;
+            this.passwordLabel.Text = "Password";
+
+            // userIdLabel
+            this.userIdLabel.AutoSize = true;
+            this.userIdLabel.Font = new System.Drawing.Font("Segoe Script", 8.25F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.userIdLabel.Location = new System.Drawing.Point(194, 246);
+            this.userIdLabel.Name = "userIdLabel";
+            this.userIdLabel.Size = new System.Drawing.Size(50, 17);
+            this.userIdLabel.TabIndex = 11;
+            this.userIdLabel.Text = "User ID";
+
+            // loginInfoLabel
+            this.loginInfoLabel.AutoSize = true;
+            this.loginInfoLabel.Font = new System.Drawing.Font("Franklin Gothic Medium", 8.25F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))));
+            this.loginInfoLabel.Location = new System.Drawing.Point(194, 211);
+            this.loginInfoLabel.Name = "loginInfoLabel";
+            this.loginInfoLabel.Size = new System.Drawing.Size(196, 15);
+            this.loginInfoLabel.TabIndex = 10;
+            this.loginInfoLabel.Text = "Please login if you are a MANAGER";
+            
+            // userIdTextBox
+            this.userIdTextBox.Location = new System.Drawing.Point(263, 246);
+            this.userIdTextBox.Name = "userIdTextBox";
+            this.userIdTextBox.Size = new System.Drawing.Size(164, 20);
+            this.userIdTextBox.TabIndex = 9;
+
+            // passwordTextBox
+            this.passwordTextBox.Location = new System.Drawing.Point(263, 272);
+            this.passwordTextBox.Name = "passwordTextBox";
+            this.passwordTextBox.PasswordChar = 'x';
+            this.passwordTextBox.Size = new System.Drawing.Size(164, 20);
+            this.passwordTextBox.TabIndex = 8;
+
+            // ManagerLoginForm
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
-            this.Controls.Add(this.button3);
-            this.Controls.Add(this.pictureBox1);
-            this.Controls.Add(this.label3);
-            this.Controls.Add(this.label2);
-            this.Controls.Add(this.managerLoginInfo);
-            this.Controls.Add(this.idBoxManager);
-            this.Controls.Add(this.passBoxManager);
+            this.Controls.Add(this.loginButton);
+            this.Controls.Add(this.logoPictureBox);
+            this.Controls.Add(this.passwordLabel);
+            this.Controls.Add(this.userIdLabel);
+            this.Controls.Add(this.loginInfoLabel);
+            this.Controls.Add(this.userIdTextBox);
+            this.Controls.Add(this.passwordTextBox);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
-            this.Name = "ManagerLogin";
-            this.Text = "HomePageManagerLogin";
-            this.Load += new System.EventHandler(this.HomePageManagerLogin_Load);
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
+            this.Name = "ManagerLoginForm";
+            this.Text = "ManagerLoginForm";
+            this.Load += new System.EventHandler(this.ManagerLoginForm_Load);
+            ((System.ComponentModel.ISupportInitialize)(this.logoPictureBox)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
-
         }
 
         #endregion
 
-        private System.Windows.Forms.Button button3;
-        private System.Windows.Forms.PictureBox pictureBox1;
-        private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.Label managerLoginInfo;
-        private System.Windows.Forms.TextBox idBoxManager;
-        private System.Windows.Forms.TextBox passBoxManager;
+        private System.Windows.Forms.Button loginButton;
+        private System.Windows.Forms.PictureBox logoPictureBox;
+        private System.Windows.Forms.Label passwordLabel;
+        private System.Windows.Forms.Label userIdLabel;
+        private System.Windows.Forms.Label loginInfoLabel;
+        private System.Windows.Forms.TextBox userIdTextBox;
+        private System.Windows.Forms.TextBox passwordTextBox;
     }
 }
