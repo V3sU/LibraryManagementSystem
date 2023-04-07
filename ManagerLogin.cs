@@ -1,64 +1,63 @@
-﻿using System;
+using System;
 using System.Data;
 using System.Windows.Forms;
-using System.Data.SqlClient;
 using MySql.Data.MySqlClient;
 
 namespace LibraryManagementSystem.forms
 {
-    public partial class ManagerLogin : Form
+    public partial class ManagerLoginForm : Form
     {
-        string querry;
-        HomePage hmp;
-        public ManagerLogin(HomePage HomePage)
+        string query;
+        HomePage homePage;
+        
+        // Constructor with a reference to the HomePage form
+        public ManagerLoginForm(HomePage homePage)
         {
-            this.hmp = HomePage;
+            this.homePage = homePage;
             InitializeComponent();
         }
-        private void logincheck()
+        
+        // Method to check the manager login credentials
+        private void CheckLoginCredentials()
         {
             try
             {
+                Connection connection = new Connection();
+                query = "SELECT * FROM MANAGERLOGININFO WHERE id='" + userIdTextBox.Text + "' AND password='" + passwordTextBox.Text + "'";
 
-                Connection CN = new Connection();
-                querry = "SELECT * FROM MANAGERLOGININFO WHERE id='" + idBoxManager.Text + "' AND password='" + passBoxManager.Text + "'";
+                MySqlDataAdapter dataAdapter = new MySqlDataAdapter(query, connection.thisConnection);
 
-                MySqlDataAdapter sda = new MySqlDataAdapter(querry, CN.thisConnection);
+                DataTable dataTable = new DataTable();
+                dataAdapter.Fill(dataTable);
 
-                DataTable dtable = new DataTable();
-                sda.Fill(dtable);
-
-                if (dtable.Rows.Count > 0)
+                if (dataTable.Rows.Count > 0)
                 {
-                    ManagerPage oform2 = new ManagerPage(hmp);
-                    oform2.Show();
-                    passBoxManager.Clear();
-                    hmp.Hide();
-
+                    ManagerPage managerPage = new ManagerPage(homePage);
+                    managerPage.Show();
+                    passwordTextBox.Clear();
+                    homePage.Hide();
                 }
                 else
                 {
-                    managerLoginInfo.Text = "Admin: username or password incorrect";
-                    passBoxManager.Clear();
+                    loginInfoLabel.Text = "Admin: username or password incorrect";
+                    passwordTextBox.Clear();
                 }
-                //this.Close();
-                CN.thisConnection.Close();
 
+                connection.thisConnection.Close();
             }
             catch (Exception ex)
             {
-                managerLoginInfo.Text = "Admin: Exception error: " + ex.ToString();
+                loginInfoLabel.Text = "Admin: Exception error: " + ex.ToString();
             }
         }
 
-        private void HomePageManagerLogin_Load(object sender, EventArgs e)
+        private void ManagerLoginForm_Load(object sender, EventArgs e)
         {
-
         }
 
-        private void button3_Click(object sender, EventArgs e)
+        private void LoginButton_Click(object sender, EventArgs e)
         {
-            this.logincheck();
+            CheckLoginCredentials();
         }
     }
 }
