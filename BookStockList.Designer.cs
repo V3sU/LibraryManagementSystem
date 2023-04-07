@@ -1,6 +1,6 @@
-﻿namespace LibraryManagementSystem.forms
+namespace LibraryManagementSystem.Forms
 {
-    partial class BookStockList
+    partial class BookStockListForm
     {
         /// <summary>
         /// Required designer variable.
@@ -28,53 +28,53 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.refresh = new System.Windows.Forms.Button();
-            this.dataGridView1 = new System.Windows.Forms.DataGridView();
-            this.label1 = new System.Windows.Forms.Label();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
+            this.refreshButton = new System.Windows.Forms.Button();
+            this.bookStockGridView = new System.Windows.Forms.DataGridView();
+            this.titleLabel = new System.Windows.Forms.Label();
+            ((System.ComponentModel.ISupportInitialize)(this.bookStockGridView)).BeginInit();
             this.SuspendLayout();
             // 
-            // refresh
+            // refreshButton
             // 
-            this.refresh.Font = new System.Drawing.Font("Franklin Gothic Medium", 8.25F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))));
-            this.refresh.Location = new System.Drawing.Point(35, 355);
-            this.refresh.Name = "refresh";
-            this.refresh.Size = new System.Drawing.Size(80, 27);
-            this.refresh.TabIndex = 7;
-            this.refresh.Text = "Refresh";
-            this.refresh.UseVisualStyleBackColor = true;
-            this.refresh.Click += new System.EventHandler(this.refresh_Click);
+            this.refreshButton.Font = new System.Drawing.Font("Franklin Gothic Medium", 8.25F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))));
+            this.refreshButton.Location = new System.Drawing.Point(35, 355);
+            this.refreshButton.Name = "refreshButton";
+            this.refreshButton.Size = new System.Drawing.Size(80, 27);
+            this.refreshButton.TabIndex = 7;
+            this.refreshButton.Text = "Refresh";
+            this.refreshButton.UseVisualStyleBackColor = true;
+            this.refreshButton.Click += new System.EventHandler(this.RefreshButton_Click);
             // 
-            // dataGridView1
+            // bookStockGridView
             // 
-            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Location = new System.Drawing.Point(35, 112);
-            this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.Size = new System.Drawing.Size(571, 227);
-            this.dataGridView1.TabIndex = 6;
+            this.bookStockGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.bookStockGridView.Location = new System.Drawing.Point(35, 112);
+            this.bookStockGridView.Name = "bookStockGridView";
+            this.bookStockGridView.Size = new System.Drawing.Size(571, 227);
+            this.bookStockGridView.TabIndex = 6;
             // 
-            // label1
+            // titleLabel
             // 
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Segoe Script", 12F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(196, 69);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(210, 27);
-            this.label1.TabIndex = 5;
-            this.label1.Text = "ManagerPage: Book list";
+            this.titleLabel.AutoSize = true;
+            this.titleLabel.Font = new System.Drawing.Font("Segoe Script", 12F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.titleLabel.Location = new System.Drawing.Point(196, 69);
+            this.titleLabel.Name = "titleLabel";
+            this.titleLabel.Size = new System.Drawing.Size(210, 27);
+            this.titleLabel.TabIndex = 5;
+            this.titleLabel.Text = "ManagerPage: Book list";
             // 
-            // BookStockList
+            // BookStockListForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(641, 450);
-            this.Controls.Add(this.refresh);
-            this.Controls.Add(this.dataGridView1);
-            this.Controls.Add(this.label1);
+            this.Controls.Add(this.refreshButton);
+            this.Controls.Add(this.bookStockGridView);
+            this.Controls.Add(this.titleLabel);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
-            this.Name = "BookStockList";
-            this.Text = "BookStockList";
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
+            this.Name = "BookStockListForm";
+            this.Text = "BookStockListForm";
+            ((System.ComponentModel.ISupportInitialize)(this.bookStockGridView)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -82,8 +82,8 @@
 
         #endregion
 
-        private System.Windows.Forms.Button refresh;
-        private System.Windows.Forms.DataGridView dataGridView1;
-        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Button refreshButton;
+        private System.Windows.Forms.DataGridView bookStockGridView;
+        private System.Windows.Forms.Label titleLabel;
     }
 }
