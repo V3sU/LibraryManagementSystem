@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -8,65 +8,65 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace LibraryManagementSystem.forms
+namespace LibraryManagementSystem.Forms
 {
-    public partial class AdminPage : Form
+    // Admin page form that provides access to different manager-related features
+    public partial class AdminPageForm : Form
     {
-        HomePage hmpg;
-        
-        ManagerList adm1 = new ManagerList();
-        NewManagerEntr adm2 = new NewManagerEntr();
-        ManagerDelete adm3 = new ManagerDelete();
-        public AdminPage(HomePage HomePage)
+        private HomePageForm homePageForm;
+        private ManagerListForm managerListForm;
+        private NewManagerEntryForm newManagerEntryForm;
+        private ManagerDeleteForm managerDeleteForm;
+
+        public AdminPageForm(HomePageForm homePageForm)
         {
-            this.hmpg = HomePage;            
+            // Initialize the form and load the manager list form by default
+            this.homePageForm = homePageForm;            
             InitializeComponent();
-            loadform(adm1);
-            
+            LoadForm(managerListForm);            
         }
-        public void loadform(object Form)
+
+        // Loads the specified form into the main panel of the admin page form
+        private void LoadForm(object form)
         {
-            if (this.mainPanelAdmin.Controls.Count > 0)
+            // Remove any existing form from the main panel
+            if (mainPanel.Controls.Count > 0)
             {
-                this.mainPanelAdmin.Controls.RemoveAt(0);
+                mainPanel.Controls.RemoveAt(0);
             }
-            Form f = Form as Form;
+
+            // Cast the specified form to a form object and add it to the main panel
+            Form f = form as Form;
             f.TopLevel = false;
             f.Dock = DockStyle.Fill;
-            this.mainPanelAdmin.Controls.Add(f);
-            this.mainPanelAdmin.Tag = f;
+            mainPanel.Controls.Add(f);
+            mainPanel.Tag = f;
             f.Show();
         }
 
-        private void AdminPage_Load(object sender, EventArgs e)
+        // Logout button event handler that shows the home page form and hides the admin page form
+        private void LogoutButton_Click(object sender, EventArgs e)
         {
-
-        }
-
-        private void mainPanel_Paint(object sender, PaintEventArgs e)
-        {
-
-        }
-
-        private void logout_Click(object sender, EventArgs e)
-        {
-            hmpg.Show();
+            homePageForm.Show();
             this.Hide();
         }
 
-        private void button1_Click(object sender, EventArgs e)
+        // Manager list button event handler that loads the manager list form into the main panel
+        private void ManagerListButton_Click(object sender, EventArgs e)
         {
-            loadform(adm1);
+            LoadForm(managerListForm);
         }
 
-        private void button2_Click(object sender, EventArgs e)
+        // New manager entry button event handler that loads the new manager entry form into the main panel
+        private void NewManagerEntryButton_Click(object sender, EventArgs e)
         {
-            loadform(adm2);
+            LoadForm(newManagerEntryForm);
         }
 
-        private void button3_Click(object sender, EventArgs e)
+        // Manager delete button event handler that loads the manager delete form into the main panel
+        private void ManagerDeleteButton_Click(object sender, EventArgs e)
         {
-            loadform(adm3);
+            LoadForm(managerDeleteForm);
         }
     }
 }
