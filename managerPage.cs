@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -8,39 +8,41 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace LibraryManagementSystem.forms
+namespace LibraryManagementSystem.Forms
 {
-    public partial class ManagerPage : Form
+    public partial class ManagerPageForm : Form
     {
-        HomePage hmpg;
+        private readonly HomePage _homePage;
         
-        NewBookEntry mng1 = new NewBookEntry();
-        UpdateBookStock mng2 = new UpdateBookStock();
-        SearchBook mng3 = new SearchBook();
-        DeleteBookStock mng4 = new DeleteBookStock();
-        BookStockList mng5 = new BookStockList();
+        private readonly NewBookEntry _newBookEntryForm = new NewBookEntry();
+        private readonly UpdateBookStockForm _updateBookStockForm = new UpdateBookStockForm();
+        private readonly SearchBookForm _searchBookForm = new SearchBookForm();
+        private readonly DeleteBookStockForm _deleteBookStockForm = new DeleteBookStockForm();
+        private readonly BookStockListForm _bookStockListForm = new BookStockListForm();
 
-        public ManagerPage(HomePage HomePage)
+        public ManagerPageForm(HomePage homePage)
         {
-            this.hmpg = HomePage;   
+            _homePage = homePage;   
             InitializeComponent();
-            loadform(mng1);
-        }
-        public void loadform(object Form)
-        {
-            if (this.mainPanelManagerPage.Controls.Count > 0)
-            {
-                this.mainPanelManagerPage.Controls.RemoveAt(0);
-            }
-            Form f = Form as Form;
-            f.TopLevel = false;
-            f.Dock = DockStyle.Fill;
-            this.mainPanelManagerPage.Controls.Add(f);
-            this.mainPanelManagerPage.Tag = f;
-            f.Show();
+            LoadForm(_newBookEntryForm);
         }
 
-        private void ManagerPage_Load(object sender, EventArgs e)
+        // Loads the specified form into the main panel.
+        public void LoadForm(object form)
+        {
+            if (mainPanelManagerPage.Controls.Count > 0)
+            {
+                mainPanelManagerPage.Controls.RemoveAt(0);
+            }
+            Form loadedForm = form as Form;
+            loadedForm.TopLevel = false;
+            loadedForm.Dock = DockStyle.Fill;
+            mainPanelManagerPage.Controls.Add(loadedForm);
+            mainPanelManagerPage.Tag = loadedForm;
+            loadedForm.Show();
+        }
+
+        private void ManagerPageForm_Load(object sender, EventArgs e)
         {
 
         }
@@ -50,36 +52,37 @@ namespace LibraryManagementSystem.forms
 
         }
 
-        private void logout_Click(object sender, EventArgs e)
+        // Logs out the user and returns to the home page.
+        private void LogoutButton_Click(object sender, EventArgs e)
         {
-            hmpg.Show();
-            this.Hide();
-            
+            _homePage.Show();
+            Hide();  
         }
 
-        private void button1_Click(object sender, EventArgs e)
+        // Loads specific forms based on button clicks.
+        private void NewBookEntryButton_Click(object sender, EventArgs e)
         {
-            loadform(mng1);
+            LoadForm(_newBookEntryForm);
         }
 
-        private void button2_Click(object sender, EventArgs e)
+        private void UpdateBookStockButton_Click(object sender, EventArgs e)
         {
-            loadform(mng2);
+            LoadForm(_updateBookStockForm);
         }
 
-        private void button3_Click(object sender, EventArgs e)
+        private void SearchBookButton_Click(object sender, EventArgs e)
         {
-            loadform(mng3);
+            LoadForm(_searchBookForm);
         }
 
-        private void button4_Click(object sender, EventArgs e)
+        private void DeleteBookStockButton_Click(object sender, EventArgs e)
         {
-            loadform(mng4);
+            LoadForm(_deleteBookStockForm);
         }
 
-        private void button5_Click(object sender, EventArgs e)
+        private void BookStockListButton_Click(object sender, EventArgs e)
         {
-            loadform(mng5);
+            LoadForm(_bookStockListForm);
         }
     }
 }
