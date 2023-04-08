@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -8,63 +8,55 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace LibraryManagementSystem.forms
+namespace LibraryManagementSystem.Forms
 {
-    public partial class HomePage : Form
+    // Home page form that provides login options for administrators and managers
+    public partial class HomePageForm : Form
     {
-        AdminLogin adm1;
-        ManagerLogin mng1;
+        private AdminLoginForm adminLoginForm;
+        private ManagerLoginForm managerLoginForm;
 
-        public HomePage()
+        public HomePageForm()
         {
-            adm1 = new AdminLogin(this);
-            mng1 = new ManagerLogin(this);
-
+            // Initialize the form and load the admin login form by default
+            adminLoginForm = new AdminLoginForm(this);
+            managerLoginForm = new ManagerLoginForm(this);
             InitializeComponent();
-
-            loadform(adm1);
+            LoadForm(adminLoginForm);
         }
-        public void loadform(object Form)
+
+        // Loads the specified form into the main panel of the home page form
+        private void LoadForm(object form)
         {
-            if (this.mainPanel.Controls.Count > 0)
+            // Remove any existing form from the main panel
+            if (mainPanel.Controls.Count > 0)
             {
-                this.mainPanel.Controls.RemoveAt(0);
+                mainPanel.Controls.RemoveAt(0);
             }
-            Form f = Form as Form;
+
+            // Cast the specified form to a form object and add it to the main panel
+            Form f = form as Form;
             f.TopLevel = false;
             f.Dock = DockStyle.Fill;
-            this.mainPanel.Controls.Add(f);
-            this.mainPanel.Tag = f;
+            mainPanel.Controls.Add(f);
+            mainPanel.Tag = f;
             f.Show();
         }
 
-        
-        private void textBox2_TextChanged(object sender, EventArgs e)
+        // Admin login button event handler that loads the admin login form into the main panel
+        private void AdminLoginButton_Click(object sender, EventArgs e)
         {
-
+            LoadForm(adminLoginForm);
         }
 
-        private void textBox1_TextChanged(object sender, EventArgs e)
+        // Manager login button event handler that loads the manager login form into the main panel
+        private void ManagerLoginButton_Click(object sender, EventArgs e)
         {
-
+            LoadForm(managerLoginForm);
         }
 
-        private void mainPanel_Paint(object sender, PaintEventArgs e)
-        {
-
-        }
-
-        private void button1_Click(object sender, EventArgs e)
-        {
-            loadform(adm1);
-        }
-
-        private void button2_Click(object sender, EventArgs e)
-        {
-            loadform(mng1);
-        }
-
-        private void button3_Click(object sender, EventArgs e)
+        // Exit button event handler that terminates the application
+        private void ExitButton_Click(object sender, EventArgs e)
         {
             Application.Exit();
         }
