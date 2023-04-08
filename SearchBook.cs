@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -7,49 +7,45 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using System.Data.SqlClient;
 using MySql.Data.MySqlClient;
 
 namespace LibraryManagementSystem.forms
 {
-    public partial class SearchBook : Form
+    public partial class BookSearchForm : Form
     {
-        public SearchBook()
+        public BookSearchForm()
         {
             InitializeComponent();
         }
-        private void datashow(string dest)
+
+        /// <summary>
+        /// Displays books with the specified category in the data grid view.
+        /// </summary>
+        /// <param name="category">The book category to search for.</param>
+        private void DisplayBooksByCategory(string category)
         {
             try
             {
-                string querry;
-                querry = "SELECT * FROM bookTable where category='" + dest + "'";
+                string query = "SELECT * FROM bookTable WHERE category='" + category + "'";
 
-                Connection CN = new Connection();
+                Connection connection = new Connection();
 
-                MySqlDataAdapter sda = new MySqlDataAdapter(querry, CN.thisConnection);
+                MySqlDataAdapter dataAdapter = new MySqlDataAdapter(query, connection.ThisConnection);
 
-                DataTable fatable = new DataTable();
-                sda.Fill(fatable);
-                dataGridView1.DataSource = fatable;
-                CN.thisConnection.Close();
+                DataTable dataTable = new DataTable();
+                dataAdapter.Fill(dataTable);
+                booksDataGridView.DataSource = dataTable;
+                connection.ThisConnection.Close();
             }
             catch (Exception ex)
             {
-                errorsearchBook.Text = ex.Message;
+                searchErrorLabel.Text = ex.Message;
             }
-
-        }
- 
-
-        private void label1_Click(object sender, EventArgs e)
-        {
-
         }
 
-        private void button1_Click(object sender, EventArgs e)
+        private void SearchButton_Click(object sender, EventArgs e)
         {
-            datashow(categoryComboBox.Text);
+            DisplayBooksByCategory(categoryComboBox.Text);
         }
     }
 }
