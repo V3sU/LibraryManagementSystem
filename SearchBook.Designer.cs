@@ -1,6 +1,6 @@
-﻿namespace LibraryManagementSystem.forms
+namespace LibraryManagementSystem.forms
 {
-    partial class SearchBook
+    partial class BookSearchForm
     {
         /// <summary>
         /// Required designer variable.
@@ -28,43 +28,48 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.label1 = new System.Windows.Forms.Label();
-            this.dataGridView1 = new System.Windows.Forms.DataGridView();
-            this.button1 = new System.Windows.Forms.Button();
+            this.titleLabel = new System.Windows.Forms.Label();
+            this.booksDataGridView = new System.Windows.Forms.DataGridView();
+            this.searchButton = new System.Windows.Forms.Button();
             this.categoryComboBox = new System.Windows.Forms.ComboBox();
-            this.label12 = new System.Windows.Forms.Label();
-            this.errorsearchBook = new System.Windows.Forms.Label();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
+            this.categoryLabel = new System.Windows.Forms.Label();
+            this.searchErrorLabel = new System.Windows.Forms.Label();
+            ((System.ComponentModel.ISupportInitialize)(this.booksDataGridView)).BeginInit();
             this.SuspendLayout();
+
             // 
-            // label1
+            // titleLabel
             // 
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Segoe Script", 12F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(192, 40);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(282, 27);
-            this.label1.TabIndex = 51;
-            this.label1.Text = "ManagerPage: Search book stock";
+            this.titleLabel.AutoSize = true;
+            this.titleLabel.Font = new System.Drawing.Font("Segoe Script", 12F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.titleLabel.Location = new System.Drawing.Point(192, 40);
+            this.titleLabel.Name = "titleLabel";
+            this.titleLabel.Size = new System.Drawing.Size(282, 27);
+            this.titleLabel.TabIndex = 51;
+            this.titleLabel.Text = "ManagerPage: Search book stock";
+
             // 
-            // dataGridView1
+            // booksDataGridView
             // 
-            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Location = new System.Drawing.Point(59, 133);
-            this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.Size = new System.Drawing.Size(520, 246);
-            this.dataGridView1.TabIndex = 76;
+            // This grid view displays the search results
+            this.booksDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.booksDataGridView.Location = new System.Drawing.Point(59, 133);
+            this.booksDataGridView.Name = "booksDataGridView";
+            this.booksDataGridView.Size = new System.Drawing.Size(520, 246);
+            this.booksDataGridView.TabIndex = 76;
+
             // 
-            // button1
+            // searchButton
             // 
-            this.button1.Font = new System.Drawing.Font("Franklin Gothic Medium", 8.25F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))));
-            this.button1.Location = new System.Drawing.Point(391, 93);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(167, 23);
-            this.button1.TabIndex = 75;
-            this.button1.Text = "Search";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
+            this.searchButton.Font = new System.Drawing.Font("Franklin Gothic Medium", 8.25F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))));
+            this.searchButton.Location = new System.Drawing.Point(391, 93);
+            this.searchButton.Name = "searchButton";
+            this.searchButton.Size = new System.Drawing.Size(167, 23);
+            this.searchButton.TabIndex = 75;
+            this.searchButton.Text = "Search";
+            this.searchButton.UseVisualStyleBackColor = true;
+            this.searchButton.Click += new System.EventHandler(this.SearchButton_Click);
+
             // 
             // categoryComboBox
             // 
@@ -82,54 +87,56 @@
             this.categoryComboBox.Name = "categoryComboBox";
             this.categoryComboBox.Size = new System.Drawing.Size(190, 21);
             this.categoryComboBox.TabIndex = 74;
+
             // 
-            // label12
+            // categoryLabel
             // 
-            this.label12.AutoSize = true;
-            this.label12.Font = new System.Drawing.Font("Segoe Script", 9.75F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label12.Location = new System.Drawing.Point(74, 93);
-            this.label12.Name = "label12";
-            this.label12.Size = new System.Drawing.Size(70, 20);
-            this.label12.TabIndex = 73;
-            this.label12.Text = "Category";
+            this.categoryLabel.AutoSize = true;
+            this.categoryLabel.Font = new System.Drawing.Font("Segoe Script", 9.75F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.categoryLabel.Location = new System.Drawing.Point(74, 93);
+            this.categoryLabel.Name = "categoryLabel";
+            this.categoryLabel.Size = new System.Drawing.Size(70, 20);
+            this.categoryLabel.TabIndex = 73;
+            this.categoryLabel.Text = "Category";
+            
             // 
-            // errorsearchBook
+            // searchErrorLabel
             // 
-            this.errorsearchBook.AutoSize = true;
-            this.errorsearchBook.BackColor = System.Drawing.Color.Red;
-            this.errorsearchBook.Font = new System.Drawing.Font("Segoe Script", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.errorsearchBook.ForeColor = System.Drawing.Color.Black;
-            this.errorsearchBook.Location = new System.Drawing.Point(75, 401);
-            this.errorsearchBook.Name = "errorsearchBook";
-            this.errorsearchBook.Size = new System.Drawing.Size(0, 17);
-            this.errorsearchBook.TabIndex = 78;
+            this.searchErrorLabel.AutoSize = true;
+            this.searchErrorLabel.BackColor = System.Drawing.Color.Red;
+            this.searchErrorLabel.Font = new System.Drawing.Font("Segoe Script", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.searchErrorLabel.ForeColor = System.Drawing.Color.Black;
+            this.searchErrorLabel.Location = new System.Drawing.Point(75, 401);
+            this.searchErrorLabel.Name = "searchErrorLabel";
+            this.searchErrorLabel.Size = new System.Drawing.Size(0, 17);
+            this.searchErrorLabel.TabIndex = 78;
+
             // 
-            // SearchBook
+            // BookSearchForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(655, 450);
-            this.Controls.Add(this.errorsearchBook);
-            this.Controls.Add(this.dataGridView1);
-            this.Controls.Add(this.button1);
+            this.Controls.Add(this.searchErrorLabel);
+            this.Controls.Add(this.booksDataGridView);
+            this.Controls.Add(this.searchButton);
             this.Controls.Add(this.categoryComboBox);
-            this.Controls.Add(this.label12);
-            this.Controls.Add(this.label1);
+            this.Controls.Add(this.categoryLabel);
+            this.Controls.Add(this.titleLabel);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
-            this.Name = "SearchBook";
-            this.Text = "SearchBook";
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
+            this.Name = "BookSearchForm";
+            this.Text = "BookSearchForm";
+            ((System.ComponentModel.ISupportInitialize)(this.booksDataGridView)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
-
         }
 
         #endregion
-        private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.DataGridView dataGridView1;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Label titleLabel;
+        private System.Windows.Forms.DataGridView booksDataGridView;
+        private System.Windows.Forms.Button searchButton;
         private System.Windows.Forms.ComboBox categoryComboBox;
-        private System.Windows.Forms.Label label12;
-        private System.Windows.Forms.Label errorsearchBook;
+        private System.Windows.Forms.Label categoryLabel;
+        private System.Windows.Forms.Label searchErrorLabel;
     }
 }
