@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -6,74 +6,72 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using System.Windows.Forms; 
+using System.Windows.Forms;
 using System.Data.SqlClient;
 using MySql.Data.MySqlClient;
 
-namespace LibraryManagementSystem.forms
+namespace LibraryManagementSystem.Forms
 {
-    public partial class UpdateBookStock : Form
+    public partial class UpdateBookStockForm : Form
     {
-        private string bk_fetch,bk_update;
-        Connection CN = new Connection();
+        private string _bookFetchQuery, _bookUpdateQuery;
+        private Connection _connection = new Connection();
 
-        public UpdateBookStock()
+        public UpdateBookStockForm()
         {
             InitializeComponent();
         }
 
-        private void UpdateBookStock_Load(object sender, EventArgs e)
+        private void UpdateBookStockForm_Load(object sender, EventArgs e)
         {
 
         }
 
-        private void textBox1_TextChanged(object sender, EventArgs e)
+        // Fetches book details when the book name is entered.
+        private void BookNameTextBox_TextChanged(object sender, EventArgs e)
         {
             try
             {
-                bk_fetch = "SELECT bookName, bookPublishedYear, writerName, quantity, category, entryDate FROM bookTable where bookName= '" + textBox1.Text + "'";
-                CN.thisConnection.Open();
+                _bookFetchQuery = "SELECT bookName, bookPublishedYear, writerName, quantity, category, entryDate FROM bookTable where bookName= '" + BookNameTextBox.Text + "'";
+                _connection.ThisConnection.Open();
 
-                MySqlCommand sdaa = new MySqlCommand(bk_fetch, CN.thisConnection);
+                MySqlCommand fetchCommand = new MySqlCommand(_bookFetchQuery, _connection.ThisConnection);
+                MySqlDataReader dataReader = fetchCommand.ExecuteReader();
 
-                MySqlDataReader da = sdaa.ExecuteReader();
-
-                while (da.Read())
+                while (dataReader.Read())
                 {
-                    bookNameBoxup.Text = da.GetValue(0).ToString();
-                    comboBox2.Text = da.GetValue(1).ToString();
-                    textBox2.Text = da.GetValue(2).ToString();
-                    textBox3.Text = da.GetValue(3).ToString();
-                    comboBox3.Text = da.GetValue(4).ToString();
-                    dateTimePicker1.Text = da.GetValue(5).ToString();
+                    BookNameBoxUp.Text = dataReader.GetValue(0).ToString();
+                    PublishedYearComboBox.Text = dataReader.GetValue(1).ToString();
+                    WriterNameTextBox.Text = dataReader.GetValue(2).ToString();
+                    QuantityTextBox.Text = dataReader.GetValue(3).ToString();
+                    CategoryComboBox.Text = dataReader.GetValue(4).ToString();
+                    EntryDatePicker.Text = dataReader.GetValue(5).ToString();
                 }
-                CN.thisConnection.Close();
-            }
-            
-            catch(Exception ex)
-            {
-                ERRORLAvEL.Text = ex.Message;
-            }
-            //ERRORLAvEL
-        }
-
-        private void button3_Click(object sender, EventArgs e)
-        {
-            try
-            {
-                bk_update = "UPDATE bookTable SET bookName = '" + bookNameBoxup.Text + "' , bookPublishedYear = '" + comboBox2.Text + "', writerName = '" + textBox2.Text + "', quantity = '" + textBox4.Text + "', category = '" + comboBox3.Text + "', entryDate = '" + dateTimePicker1.Text + "'  WHERE bookName= '" + textBox1.Text + "' ";
-                CN.thisConnection.Open();
-                MySqlCommand cmcd = new MySqlCommand(bk_update, CN.thisConnection);
-
-                cmcd.ExecuteNonQuery();
-
-                CN.thisConnection.Close();
-                ERRORLAvEL.Text = " Data updated";
-
+                _connection.ThisConnection.Close();
             }
             catch (Exception ex)
             {
-                ERRORLAvEL.Text = ex.Message;
+                ErrorLabel.Text = ex.Message;
+            }
+        }
+
+        // Updates book stock and details when the 'Update' button is clicked.
+        private void UpdateButton_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                _bookUpdateQuery = "UPDATE bookTable SET bookName = '" + BookNameBoxUp.Text + "' , bookPublishedYear = '" + PublishedYearComboBox.Text + "', writerName = '" + WriterNameTextBox.Text + "', quantity = '" + NewQuantityTextBox.Text + "', category = '" + CategoryComboBox.Text + "', entryDate = '" + EntryDatePicker.Text + "'  WHERE bookName= '" + BookNameTextBox.Text + "' ";
+                _connection.ThisConnection.Open();
+                MySqlCommand updateCommand = new MySqlCommand(_bookUpdateQuery, _connection.ThisConnection);
+
+                updateCommand.ExecuteNonQuery();
+
+                _connection.ThisConnection.Close();
+                ErrorLabel.Text = " Data updated";
+            }
+            catch (Exception ex)
+            {
+                ErrorLabel.Text = ex.Message;
             }
         }
     }
